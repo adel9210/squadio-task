@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.scss';
+import UserBuilding from './components/UserBuilding/UserBuilding';
 
-function App() {
-  return (
-    <div className="App">
-      <h2 className={'app'}>Hi New Project</h2>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    {/* <h2 className={'app'}>Hi New Project</h2> */}
+    <UserBuilding />
+  </div>
+);
 
 export default App;

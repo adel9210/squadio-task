@@ -1,0 +1,23 @@
+
+.building{
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  cursor: pointer;
+
+  &__icon{
+    margin-inline-end: 10px;
+  }
+
+  &__name {
+    color: #787486;
+    font-size: 16px;
+  }
+
+  &:hover {
+    .building__name, .building__icon {
+      color: #3366FF;
+      fill: #3366FF;
+    }
+  }
+}

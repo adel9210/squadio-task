@@ -1,0 +1,27 @@
+.button {
+  padding: 0 25px;
+  height: 32px;
+  line-height: 16px;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  margin-inline-start:  10px;
+
+
+  &--primary {
+    background-color: #3366FF;
+    color: white;
+  }
+
+  &--secondary {
+    border: 1px solid #D8DAE5;
+  }
+
+  &--tertiary {
+    width: 100%;
+    background-color: #68B266;
+    color: #fff;
+  }
+}

@@ -1,0 +1,19 @@
+.building-form {
+  width: 30%;
+
+  &__group{
+    margin-bottom: 20px;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 500;
+    color: #0D062D;
+    margin-bottom: 40px;
+  }
+}
