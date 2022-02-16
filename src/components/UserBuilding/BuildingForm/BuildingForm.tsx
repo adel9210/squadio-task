@@ -1,20 +1,28 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import './BuildingForm.scss';
+import { useDispatch } from 'react-redux';
 import Input from '../../../core/Input/Input';
 import countriesData from '../../../assets/moc/countriesList.json';
 import Select from '../../../core/Select/Select';
 import Button from '../../../core/Button/Button';
+import { addBuilding } from '../../../redux/userBuildingSlice';
 
 interface IForm {
     buildingName: string,
     buildingLocation: string[]
 }
 
+const formInitialState:IForm = {
+  buildingName: 'Building Name',
+  buildingLocation: ['AFG'],
+};
+
 type TFormMode = 'ADD' | 'EDIT';
 
 const BuildingForm = ({ mode }: {mode:TFormMode}) => {
   const [countries] = useState(countriesData);
-  const [formData, setFormData] = useState<IForm | any>();
+  const [formData, setFormData] = useState<IForm | any>(formInitialState);
+  const dispatch = useDispatch();
 
   const formChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     const { id, value } = event.target;
@@ -25,14 +33,9 @@ const BuildingForm = ({ mode }: {mode:TFormMode}) => {
   };
 
   const formSubmitHandler = () => {
-    console.log(formData);
+    dispatch(addBuilding(formData));
+    setFormData(formInitialState);
   };
-
-  useEffect(() => {
-    if (mode === 'ADD') {
-      setFormData({ buildingName: 'Building Name' });
-    }
-  }, []);
 
   return (
     <form className="building-form">
