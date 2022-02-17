@@ -1,0 +1,31 @@
+.building-location {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+
+    &__building-name {
+      font-size: 32px;
+      font-weight: 500;
+      margin-inline-end: 10px;
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      &__item {
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        background-color: #dcd6fa;
+        color: #3366ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.map-marker {
+  position: relative;
+  &__icon {
+    width: 50px;
+  }
+
+  &__info {
+    position: absolute;
+    left: 50%;
+    top: -60px;
+    transform: translateX(-50%);
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 250px;
+    margin-bottom: 10px;
+  }
+}

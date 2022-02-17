@@ -25,7 +25,11 @@ const BuildingList = () => {
       </div>
 
       <div className="list__buildings">
-        {activeUser.buildings.map((building) => <BuildingItem building={building} />)}
+        {
+            activeUser.buildings.map((building) => (
+              <BuildingItem key={building.id} building={building} />
+            ))
+        }
       </div>
       <div className="list__add-button">
         <Button type="tertiary">+ Add Building</Button>

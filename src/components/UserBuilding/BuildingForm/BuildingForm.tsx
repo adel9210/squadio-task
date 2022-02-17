@@ -1,11 +1,12 @@
 import React, { ChangeEvent, useState } from 'react';
 import './BuildingForm.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../core/Input/Input';
 import countriesData from '../../../assets/moc/countriesList.json';
 import Select from '../../../core/Select/Select';
 import Button from '../../../core/Button/Button';
 import { addBuilding } from '../../../redux/userBuildingSlice';
+import { RootState } from '../../../redux/store';
 
 interface IForm {
     buildingName: string,
@@ -17,11 +18,10 @@ const formInitialState:IForm = {
   buildingLocation: ['AFG'],
 };
 
-type TFormMode = 'ADD' | 'EDIT';
-
-const BuildingForm = ({ mode }: {mode:TFormMode}) => {
+const BuildingForm = () => {
   const [countries] = useState(countriesData);
   const [formData, setFormData] = useState<IForm | any>(formInitialState);
+  const isEdit = useSelector((state: RootState) => state.usersBuildings.isEditMode);
   const dispatch = useDispatch();
 
   const formChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -48,7 +48,7 @@ const BuildingForm = ({ mode }: {mode:TFormMode}) => {
       </div>
       <div className="building-form__actions">
         <Button type="secondary">Cancel</Button>
-        <Button onClick={formSubmitHandler} type="primary">{mode === 'EDIT' ? 'Edit' : 'Create'}</Button>
+        <Button onClick={formSubmitHandler} type="primary">{isEdit ? 'Edit' : 'Create'}</Button>
 
       </div>
     </form>
