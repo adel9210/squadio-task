@@ -33,7 +33,7 @@ const BuildingList = () => {
           placeholder="Select User"
           label="Select User"
           onChange={onUserChangeHandler}
-          value={JSON.stringify(activeUser)}
+          value={activeUser.id}
           options={users}
           keyName="name"
           keyValue="id"

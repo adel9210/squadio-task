@@ -7,7 +7,9 @@ import Input from '../../../core/Input/Input';
 import countriesData from '../../../assets/moc/countriesList.json';
 import Select from '../../../core/Select/Select';
 import Button from '../../../core/Button/Button';
-import { addBuilding, setFormMode, updateBuilding } from '../../../redux/userBuildingSlice';
+import {
+  addBuilding, setActiveBuilding, setFormMode, updateBuilding,
+} from '../../../redux/userBuildingSlice';
 import { RootState } from '../../../redux/store';
 import { Building } from '../../../interfaces/Building.interface';
 
@@ -29,14 +31,16 @@ const BuildingForm = () => {
   const formSubmitHandler = () => {
     const building: Building = {
       buildingName: formData.buildingName,
-      countryName: formData.countryName,
       countryCode: formData.countryCode,
+      countryName: formData.countryName,
       position: formData.position,
-      id: formData.id,
+      id: uuidv4(),
     };
 
     if (formMode === 'ADD') {
-      const { position, name } = JSON.parse(formData.selectLocation);
+      const { position, name } = countries.filter(
+        (country) => country.id === formData.countryCode,
+      )[0];
       building.position = position;
       building.countryName = name;
       dispatch(addBuilding(building));
@@ -45,9 +49,12 @@ const BuildingForm = () => {
       dispatch(updateBuilding(building));
       toast.success('This building was edited successfully.');
     }
+    dispatch(setActiveBuilding(building));
+    dispatch(setFormMode(null));
   };
   useEffect(() => {
     if (formMode === 'UPDATE') {
+      debugger;
       setFormData(selectedBuilding);
     }
   }, []);
@@ -66,10 +73,10 @@ const BuildingForm = () => {
       </div>
       <div className="building-form__group">
         <Select
-          id="selectLocation"
+          id="countryCode"
           placeholder="Building Location"
           options={countries}
-          value={selectedBuilding.countryCode}
+          value={formData?.countryCode}
           keyName="name"
           keyValue="id"
           onChange={formChangeHandler}
