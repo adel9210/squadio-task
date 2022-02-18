@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+.input {
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid $grey-100;
+  width: 100%;
+  display: block;
+  padding: 0 10px;
+
+  &-label {
+    font-size: rem(14);
+    color: $grey-700;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+
+  &:focus, &:active {
+    outline: none;
+    border: 1px solid $blue-100;
+  }
+}
+

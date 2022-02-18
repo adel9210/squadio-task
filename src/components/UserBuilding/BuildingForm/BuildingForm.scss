@@ -1,0 +1,21 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+.building-form {
+  width: 30%;
+
+  &__group {
+    margin-bottom: 20px;
+  }
+
+  &__actions {
+    @include flex(center, flex-end);
+  }
+
+  &__title {
+    font-size: rem(32);
+    font-weight: 500;
+    color: $blue-700;
+    margin-bottom: 40px;
+  }
+}

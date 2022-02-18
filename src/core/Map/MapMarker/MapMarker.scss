@@ -1,0 +1,40 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+.map-marker {
+  position: relative;
+
+  &__icon {
+    width: 50px;
+    cursor: pointer;
+  }
+
+  &__info {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: -65px;
+    transform: translateX(-50%);
+    padding: 15px;
+    background-color: $color-white;
+    border-radius: 5px;
+    font-size: rem(18);
+    min-width: 150px;
+    margin-bottom: 10px;
+
+    &__building {
+      &-name {
+        font-size: rem(15);
+        font-weight: 500;
+      }
+
+      &-city {
+        font-size: rem(12);
+      }
+    }
+  }
+
+  &:hover {
+    .map-marker__info {display: block}
+  }
+}

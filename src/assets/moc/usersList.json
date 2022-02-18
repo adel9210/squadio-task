@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Tobias Funke",
+      "buildings": [
+        {
+          "id": "b11",
+          "buildingName": "Tobias Building 1",
+          "countryName": "EGYPT",
+          "countryCode": "EGY",
+          "position": [
+            30.044420,
+            31.235712
+          ]
+        },
+        {
+          "id": "b12",
+          "buildingName": "Tobias Building 2",
+          "countryName": "Angola",
+          "countryCode": "AGO",
+          "position": [
+            -10.361866945205483,
+            16.907859164383563
+          ]
+        },
+        {
+          "id": "b13",
+          "buildingName": "Tobias Building 3",
+          "countryName": "Albania",
+          "countryCode": "ALB",
+          "position": [
+            41.24549533333333,
+            20.086699571428568
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Fields Byron",
+      "buildings": [
+        {
+          "id": "b21",
+          "buildingName": "Fields Building 1",
+          "countryName": "United Arab Emirates",
+          "countryCode": "ARE",
+          "position": [
+            24.192992571428572,
+            54.370252857142866
+          ]
+        },
+        {
+          "id": "b22",
+          "buildingName": "Fields Building 2",
+          "countryName": "Argentina",
+          "countryCode": "ARG",
+          "position": [
+            -38.53319952100841,
+            -65.31919331932774
+          ]
+        },
+        {
+          "id": "b23",
+          "buildingName": "Fields Building 3",
+          "countryName": "Armenia",
+          "countryCode": "ARM",
+          "position": [
+            40.0073217368421,
+            45.24748026315788
+          ]
+        }
+      ]
+    }
+  ]
+}
