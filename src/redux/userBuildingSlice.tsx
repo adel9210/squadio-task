@@ -36,7 +36,6 @@ export const usersBuildingSlice = createSlice({
         state.FormMode = 'ADD';
       } else {
         state.activeUser.buildings.splice(buildingIndex, 1);
-        // eslint-disable-next-line prefer-destructuring
         state.activeBuilding = userBuildings[0];
       }
     },

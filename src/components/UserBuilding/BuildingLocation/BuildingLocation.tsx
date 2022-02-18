@@ -7,21 +7,17 @@ import MapMarker from '../../../core/Map/MapMarker/MapMarker';
 import { RootState } from '../../../redux/store';
 import { removeBuilding, setFormMode } from '../../../redux/userBuildingSlice';
 import Spinner from '../../../core/Spinner/Spinner';
-import editIcon from '../../../assets/images/edit.svg';
-import deleteIcon from '../../../assets/images/delete.svg';
 import NoData from '../../../core/NoData/NoData';
+import { CONFIRM_DELETE_MESSAGE, SUCCESS_DELETE_MESSAGE } from '../../../constants/messages.constant';
+import DEFAULT_MAP_OPTIONS from '../../../constants/building.constant';
+import GOOGLE_MAP_KEY from '../../../constants/map.constant';
 
-const defaultMapOptions = {
-  center: {
-    lat: 30.044420,
-    lng: 31.235712,
-  },
-  zoom: 5,
-};
+const editIcon = require('../../../assets/images/edit.svg').default;
+const deleteIcon = require('../../../assets/images/delete.svg').default;
 
 interface IMapOptions {
-  center: Coords,
-  zoom?: number
+    center: Coords,
+    zoom?: number
 }
 
 declare const window: any;
@@ -30,7 +26,7 @@ const BuildingLocation: FunctionComponent = () => {
   const building = useSelector((state: RootState) => state.usersBuildings.activeBuilding);
   const activeUserBuildings = useSelector((state: RootState) => state.usersBuildings.activeUser);
   const [mapRef, setMapRef] = useState<any>();
-  const [mapOptions, setMapOptions] = useState<IMapOptions>(defaultMapOptions);
+  const [mapOptions, setMapOptions] = useState<IMapOptions>(DEFAULT_MAP_OPTIONS);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,7 +40,7 @@ const BuildingLocation: FunctionComponent = () => {
       return true;
     });
 
-    mapRef.fitBounds(bounds);
+    mapRef.fitBounds(bounds, { height: 500, width: 500 });
     setMapOptions({
       center: {
         lat: mapRef.getCenter().lat(),
@@ -55,10 +51,10 @@ const BuildingLocation: FunctionComponent = () => {
   };
 
   const deleteBuildingHandler = () => {
-    const deleteStatus = window.confirm('Are you sure you want to delete this building?');
+    const deleteStatus = window.confirm(CONFIRM_DELETE_MESSAGE);
     if (deleteStatus) {
       dispatch(removeBuilding(building));
-      toast.success('This building was deleted successfully.');
+      toast.success(SUCCESS_DELETE_MESSAGE);
     }
   };
 
@@ -102,7 +98,7 @@ const BuildingLocation: FunctionComponent = () => {
           {isLoading && <Spinner />}
           <div style={{ height: '80vh', width: '100%' }}>
             <GoogleMapReact
-              bootstrapURLKeys={{ key: 'AIzaSyDf7s3FUBNPyKhtMjf8HvX_hluV1f3CJqY' }}
+              bootstrapURLKeys={{ key: GOOGLE_MAP_KEY }}
               yesIWantToUseGoogleMapApiInternals
               defaultZoom={mapOptions.zoom}
               defaultCenter={mapOptions.center}

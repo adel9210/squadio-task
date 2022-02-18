@@ -1,16 +1,6 @@
 import './Select.scss';
 import { HTMLAttributes } from 'react';
 
-// interface ISelect {
-//     options: any[],
-//     keyName: string,
-//     keyValue: string,
-//     onChange: ChangeEventHandler,
-//     label: string,
-//     id: string,
-//     placeholder: string
-// }
-
 interface SelectProps extends HTMLAttributes<HTMLElement> {
     keyName: string,
     keyValue: string,

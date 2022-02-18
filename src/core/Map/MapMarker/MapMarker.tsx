@@ -1,6 +1,7 @@
 import './MapMarker.scss';
 import { FunctionComponent } from 'react';
-import MarkerImage from '../../../assets/images/marker.svg';
+
+const MarkerImage = require('../../../assets/images/marker.svg').default;
 
 const MapMarker: FunctionComponent<any> = ({ buildingName, buildingLocation }) => (
   <div className="map-marker">

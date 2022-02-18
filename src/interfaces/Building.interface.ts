@@ -1,7 +1,3 @@
-export interface IBuilding {
-    name: string
-}
-
 export interface Building {
     id: string;
     buildingName: string;

@@ -12,6 +12,7 @@ import {
 } from '../../../redux/userBuildingSlice';
 import { RootState } from '../../../redux/store';
 import { Building } from '../../../interfaces/Building.interface';
+import { SUCCESS_CREATE_MESSAGE, SUCCESS_UPDATE_MESSAGE } from '../../../constants/messages.constant';
 
 const BuildingForm = () => {
   const [countries] = useState(countriesData);
@@ -44,10 +45,10 @@ const BuildingForm = () => {
       building.position = position;
       building.countryName = name;
       dispatch(addBuilding(building));
-      toast.success('Created Successfully!');
+      toast.success(SUCCESS_CREATE_MESSAGE);
     } else {
       dispatch(updateBuilding(building));
-      toast.success('This building was edited successfully.');
+      toast.success(SUCCESS_UPDATE_MESSAGE);
     }
     dispatch(setActiveBuilding(building));
     dispatch(setFormMode(null));

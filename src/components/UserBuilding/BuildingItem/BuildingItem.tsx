@@ -1,10 +1,11 @@
 import './BuildingItem.scss';
 import { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import BuildingSVG from '../../../assets/images/building.svg';
 import { Building } from '../../../interfaces/Building.interface';
 import { setActiveBuilding, setFormMode } from '../../../redux/userBuildingSlice';
 import { RootState } from '../../../redux/store';
+
+const BuildingSVG = require('../../../assets/images/building.svg').default;
 
 const BuildingItem: FunctionComponent<{ building: Building }> = ({ building }) => {
   const activeBuilding = useSelector((state: RootState) => state.usersBuildings.activeBuilding);
@@ -26,4 +27,5 @@ const BuildingItem: FunctionComponent<{ building: Building }> = ({ building }) =
     </button>
   );
 };
+
 export default BuildingItem;
