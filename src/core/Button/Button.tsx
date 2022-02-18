@@ -13,5 +13,4 @@ const Button = (props: ButtonProps) => {
 
   return <button {...props} type="button" className={`button button--${type}`}>{children}</button>;
 };
-
 export default Button;

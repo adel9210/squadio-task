@@ -35,6 +35,8 @@
   }
 
   &:hover {
-    .map-marker__info {display: block}
+    .map-marker__info {
+      display: block
+    }
   }
 }

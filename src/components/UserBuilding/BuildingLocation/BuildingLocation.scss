@@ -24,10 +24,23 @@
         background-color: $grey-300;
         color: $primary-color;
         cursor: pointer;
+
+        &__link {
+          width: 18px;
+        }
       }
     }
   }
+
   &__map {
     position: relative;
+  }
+
+  @media screen and (max-width: 768px) {
+    &__header {
+      &__building-name {
+        font-size: rem(20);
+      }
+    }
   }
 }

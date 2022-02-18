@@ -2,10 +2,14 @@ import './BuildingLocation.scss';
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import GoogleMapReact, { Coords } from 'google-map-react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import MapMarker from '../../../core/Map/MapMarker/MapMarker';
 import { RootState } from '../../../redux/store';
-import { setFormMode } from '../../../redux/userBuildingSlice';
+import { removeBuilding, setFormMode } from '../../../redux/userBuildingSlice';
 import Spinner from '../../../core/Spinner/Spinner';
+import editIcon from '../../../assets/images/edit.svg';
+import deleteIcon from '../../../assets/images/delete.svg';
+import NoData from '../../../core/NoData/NoData';
 
 const defaultMapOptions = {
   center: {
@@ -16,8 +20,8 @@ const defaultMapOptions = {
 };
 
 interface IMapOptions {
-    center: Coords,
-    zoom?: number
+  center: Coords,
+  zoom?: number
 }
 
 declare const window: any;
@@ -50,6 +54,14 @@ const BuildingLocation: FunctionComponent = () => {
     });
   };
 
+  const deleteBuildingHandler = () => {
+    const deleteStatus = window.confirm('Are you sure you want to delete this building?');
+    if (deleteStatus) {
+      dispatch(removeBuilding(building));
+      toast.success('This building was deleted successfully.');
+    }
+  };
+
   useEffect(() => {
     if (mapRef) {
       fitMapBounds();
@@ -61,38 +73,53 @@ const BuildingLocation: FunctionComponent = () => {
     }, 1000);
   }, [building, mapRef]);
   return (
-    <div className="building-location">
-      <div className="building-location__header">
-        <h2 className="building-location__header__building-name">{building.buildingName}</h2>
-        <ul className="building-location__header__actions">
-          <li className="building-location__header__actions__item" onClick={() => dispatch(setFormMode('UPDATE'))}>
-            <span className="building-location__header__actions__item__link">e</span>
-          </li>
-          <li className="building-location__header__actions__item">
-            <span className="building-location__header__actions__item__link">d</span>
-          </li>
-        </ul>
-      </div>
-      <div className="building-location__map">
-        {isLoading && <Spinner />}
-        <div style={{ height: '80vh', width: '100%' }}>
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyDf7s3FUBNPyKhtMjf8HvX_hluV1f3CJqY' }}
-            yesIWantToUseGoogleMapApiInternals
-            defaultZoom={mapOptions.zoom}
-            defaultCenter={mapOptions.center}
-            onGoogleApiLoaded={({ map }) => setMapRef(map)}
-          >
-            <MapMarker
-              lat={building.position[0]}
-              lng={building.position[1]}
-              buildingName={building.buildingName}
-              buildingLocation={building.countryName}
-            />
-          </GoogleMapReact>
+
+    building ? (
+      <div className="building-location">
+        <div className="building-location__header">
+          <h2 className="building-location__header__building-name">{building.buildingName}</h2>
+          <ul className="building-location__header__actions">
+            <li
+              className="building-location__header__actions__item"
+              onClick={() => dispatch(setFormMode('UPDATE'))}
+            >
+              <img
+                className="building-location__header__actions__item__link"
+                src={editIcon}
+                alt="edit Icon"
+              />
+            </li>
+            <li onClick={deleteBuildingHandler} className="building-location__header__actions__item">
+              <img
+                className="building-location__header__actions__item__link"
+                src={deleteIcon}
+                alt="delete Icon"
+              />
+            </li>
+          </ul>
+        </div>
+        <div className="building-location__map">
+          {isLoading && <Spinner />}
+          <div style={{ height: '80vh', width: '100%' }}>
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: 'AIzaSyDf7s3FUBNPyKhtMjf8HvX_hluV1f3CJqY' }}
+              yesIWantToUseGoogleMapApiInternals
+              defaultZoom={mapOptions.zoom}
+              defaultCenter={mapOptions.center}
+              onGoogleApiLoaded={({ map }) => setMapRef(map)}
+            >
+              <MapMarker
+                lat={building.position[0]}
+                lng={building.position[1]}
+                buildingName={building.buildingName}
+                buildingLocation={building.countryName}
+              />
+            </GoogleMapReact>
+          </div>
         </div>
       </div>
-    </div>
+    ) : <NoData message="No Building Location selected" />
+
   );
 };
 

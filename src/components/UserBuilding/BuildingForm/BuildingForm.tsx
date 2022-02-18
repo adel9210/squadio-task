@@ -54,7 +54,6 @@ const BuildingForm = () => {
   };
   useEffect(() => {
     if (formMode === 'UPDATE') {
-      debugger;
       setFormData(selectedBuilding);
     }
   }, []);
@@ -86,7 +85,6 @@ const BuildingForm = () => {
       <div className="building-form__actions">
         <Button onClick={() => dispatch(setFormMode(null))} type="secondary">Cancel</Button>
         <Button onClick={formSubmitHandler} type="primary">{formMode === 'UPDATE' ? 'Edit' : 'Create'}</Button>
-
       </div>
     </form>
 

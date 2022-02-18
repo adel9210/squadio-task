@@ -19,30 +19,34 @@ export const usersBuildingSlice = createSlice({
   initialState,
   reducers: {
     addBuilding: (state, action: PayloadAction<any>) => {
-      // eslint-disable-next-line no-param-reassign
       state.activeUser.buildings = [...state.activeUser.buildings, action.payload];
     },
     updateBuilding: (state, action: PayloadAction<Building>) => {
-      // Find index of specific object using findIndex method.
       const buildingIndex = state.activeUser.buildings.findIndex((
         (obj) => obj.id === state.activeBuilding.id));
-      // eslint-disable-next-line no-param-reassign
       state.activeUser.buildings[buildingIndex] = action.payload;
     },
     removeBuilding: (state, action: PayloadAction<any>) => {
-      // eslint-disable-next-line no-param-reassign
-      state.activeUser.buildings = [...state.activeUser.buildings, action.payload];
+      const buildingIndex = state.activeUser.buildings.findIndex((
+        (obj) => obj.id === state.activeBuilding.id));
+      const userBuildings = state.activeUser.buildings;
+
+      // IF DELETE LAST ITEM WILL DISPLAY THE CREATE FORM
+      if (!userBuildings.length) {
+        state.FormMode = 'ADD';
+      } else {
+        state.activeUser.buildings.splice(buildingIndex, 1);
+        // eslint-disable-next-line prefer-destructuring
+        state.activeBuilding = userBuildings[0];
+      }
     },
     setActiveBuilding: (state, action: PayloadAction<any>) => {
-      // eslint-disable-next-line no-param-reassign
       state.activeBuilding = action.payload;
     },
     setFormMode: (state, action: PayloadAction<TFormMode>) => {
-      // eslint-disable-next-line no-param-reassign
       state.FormMode = action.payload;
     },
     setActiveUser: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
       state.activeUser = action.payload;
     },
   },
@@ -50,6 +54,6 @@ export const usersBuildingSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  addBuilding, setActiveUser, setActiveBuilding, setFormMode, updateBuilding,
+  addBuilding, setActiveUser, setActiveBuilding, setFormMode, updateBuilding, removeBuilding,
 } = usersBuildingSlice.actions;
 export default usersBuildingSlice;

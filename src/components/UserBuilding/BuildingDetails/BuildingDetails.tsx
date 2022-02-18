@@ -10,7 +10,7 @@ const BuildingDetails = () => {
 
   return (
     <div className="building-details">
-      {formMode ? <BuildingForm /> : <BuildingLocation /> }
+      {formMode ? <BuildingForm /> : <BuildingLocation />}
     </div>
   );
 };

@@ -4,4 +4,8 @@
 .user-building {
   height: 100vh;
   @include flex();
+
+  @media screen and (max-width: 768px) {
+    @include flex(flex-start, flex-start, column);
+  }
 }
