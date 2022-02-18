@@ -1,19 +1,35 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
 .map-marker {
   position: relative;
+
   &__icon {
     width: 50px;
+    cursor: pointer;
   }
 
   &__info {
     position: absolute;
     left: 50%;
-    top: -60px;
+    top: -65px;
     transform: translateX(-50%);
     padding: 15px;
-    background-color: #fff;
+    background-color: $color-white;
     border-radius: 5px;
-    font-size: 18px;
-    width: 250px;
+    font-size: rem(18);
+    min-width: 150px;
     margin-bottom: 10px;
+
+    &__building {
+      &-name {
+        font-size: rem(15);
+        font-weight: 500;
+      }
+
+      &-city {
+        font-size: rem(12);
+      }
+    }
   }
 }

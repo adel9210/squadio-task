@@ -1,5 +1,13 @@
+import './Spinner.scss';
+
 const Spinner = () => (
-  <h1>Adel Sadek</h1>
+  <div className="spinner-container">
+    <div className="spinner">
+      <div />
+      <div />
+    </div>
+
+  </div>
 );
 
 export default Spinner;

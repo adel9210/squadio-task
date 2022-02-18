@@ -1,31 +1,33 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
 .building-location {
   &__header {
-    display: flex;
-    align-items: center;
+    @include flex(center);
     margin-bottom: 30px;
 
     &__building-name {
-      font-size: 32px;
+      font-size: rem(32);
       font-weight: 500;
       margin-inline-end: 10px;
     }
 
     &__actions {
-      display: flex;
-      align-items: center;
+      @include flex(center);
       gap: 15px;
 
       &__item {
+        @include flex(center, center);
         width: 25px;
         height: 25px;
         border-radius: 5px;
-        background-color: #dcd6fa;
-        color: #3366ff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background-color: $grey-300;
+        color: $primary-color;
         cursor: pointer;
       }
     }
+  }
+  &__map {
+    position: relative;
   }
 }

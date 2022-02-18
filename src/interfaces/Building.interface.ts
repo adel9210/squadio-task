@@ -5,6 +5,8 @@ export interface IBuilding {
 export interface Building {
     id: string;
     buildingName: string;
+    countryName: string;
+    countryCode: string;
     position: number[];
 }
 
@@ -13,3 +15,5 @@ export interface User {
     name: string;
     buildings: Building[];
 }
+
+export type TFormMode = 'UPDATE' | 'ADD' | null;

@@ -1,27 +1,41 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
 .button {
   padding: 0 25px;
   height: 32px;
   line-height: 16px;
   font-weight: 500;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: rem(12);
   text-align: center;
   cursor: pointer;
-  margin-inline-start:  10px;
+  margin-inline-start: 10px;
+  transition: all .3s;
 
 
   &--primary {
-    background-color: #3366FF;
+    background-color: $primary-color;
     color: white;
+
+    &:hover {
+      background-color: $blue-500;
+    }
   }
 
   &--secondary {
-    border: 1px solid #D8DAE5;
+    border: 1px solid $grey-100;
+    &:hover {
+      border-color: $blue-100;
+    }
   }
 
   &--tertiary {
     width: 100%;
-    background-color: #68B266;
-    color: #fff;
+    background-color: $tertiary-color;
+    color: $color-white;
+    &:hover {
+      background-color: $green-600;
+    }
   }
 }

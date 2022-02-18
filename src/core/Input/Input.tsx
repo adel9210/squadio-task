@@ -6,7 +6,7 @@ interface InputProps extends HTMLAttributes<HTMLElement> {
     value: string
 }
 
-const Input = (props:InputProps) => {
+const Input = (props: InputProps) => {
   const { label } = props;
   return (
     <>

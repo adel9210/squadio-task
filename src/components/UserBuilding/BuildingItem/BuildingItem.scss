@@ -1,23 +1,24 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
 
-.building{
-  display: flex;
-  align-items: center;
+.building {
+  @include flex(center);
   margin-bottom: 30px;
   cursor: pointer;
 
-  &__icon{
+  &__icon {
     margin-inline-end: 10px;
   }
 
   &__name {
-    color: #787486;
-    font-size: 16px;
+    color: $grey-600;
+    font-size: rem(16);
   }
 
   &:hover, &--active {
     .building__name, .building__icon {
-      color: #3366FF;
-      fill: #3366FF;
+      color: $primary-color;
+      fill: $primary-color;
     }
   }
 }
