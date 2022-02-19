@@ -26,10 +26,9 @@ const Select = (props: SelectProps) => {
     <>
       <label className="select-label" htmlFor="selectId">{label}</label>
       <select value={value} onChange={(e) => onChange(e)} placeholder={placeholder} id={id} className="select">
-        {options.map((option, index) => (
+        {options.map((option) => (
           <option
             key={option[keyName]}
-            data-object={JSON.stringify(option)}
             value={option[keyValue]}
           >
             {option.name}

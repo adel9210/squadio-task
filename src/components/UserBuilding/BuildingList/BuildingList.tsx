@@ -52,7 +52,10 @@ const BuildingList = () => {
                 }
       </div>
       <div className="list__add-button">
-        <Button type="tertiary" onClick={() => dispatch(setFormMode('ADD'))}>+ Add Building</Button>
+        <Button type="tertiary" onClick={() => dispatch(setFormMode('ADD'))}>
+          + Add
+          Building
+        </Button>
       </div>
     </div>
   );

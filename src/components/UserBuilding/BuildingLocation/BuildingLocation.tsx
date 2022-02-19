@@ -61,6 +61,7 @@ const BuildingLocation: FunctionComponent = () => {
   useEffect(() => {
     if (mapRef) {
       fitMapBounds();
+      // mapRef.data.addGeoJson(countryGeo); //  set GEO countries positions
     }
 
     setIsLoading(true);

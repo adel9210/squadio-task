@@ -13,13 +13,23 @@ import {
 import { RootState } from '../../../redux/store';
 import { Building } from '../../../interfaces/Building.interface';
 import { SUCCESS_CREATE_MESSAGE, SUCCESS_UPDATE_MESSAGE } from '../../../constants/messages.constant';
+import { DEFAULT_FORM_DATA } from '../../../constants/building.constant';
 
 const BuildingForm = () => {
   const [countries] = useState(countriesData);
+  const [formValid, setFormValid] = useState(false);
   const [formData, setFormData] = useState<Building | any>();
   const formMode = useSelector((state: RootState) => state.usersBuildings.FormMode);
   const selectedBuilding = useSelector((state: RootState) => state.usersBuildings.activeBuilding);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (formMode === 'UPDATE') {
+      setFormData(selectedBuilding);
+    } else {
+      setFormData(DEFAULT_FORM_DATA);
+    }
+  }, []);
 
   const formChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     const { id, value } = event.target;
@@ -30,20 +40,19 @@ const BuildingForm = () => {
   };
 
   const formSubmitHandler = () => {
+    const { position, name } = countries.filter(
+      (country) => country.id === formData.countryCode,
+    )[0];
+
     const building: Building = {
       buildingName: formData.buildingName,
       countryCode: formData.countryCode,
-      countryName: formData.countryName,
-      position: formData.position,
+      countryName: name,
+      position,
       id: uuidv4(),
     };
 
     if (formMode === 'ADD') {
-      const { position, name } = countries.filter(
-        (country) => country.id === formData.countryCode,
-      )[0];
-      building.position = position;
-      building.countryName = name;
       dispatch(addBuilding(building));
       toast.success(SUCCESS_CREATE_MESSAGE);
     } else {
@@ -53,11 +62,6 @@ const BuildingForm = () => {
     dispatch(setActiveBuilding(building));
     dispatch(setFormMode(null));
   };
-  useEffect(() => {
-    if (formMode === 'UPDATE') {
-      setFormData(selectedBuilding);
-    }
-  }, []);
 
   return (
     <form className="building-form">
@@ -85,7 +89,12 @@ const BuildingForm = () => {
       </div>
       <div className="building-form__actions">
         <Button onClick={() => dispatch(setFormMode(null))} type="secondary">Cancel</Button>
-        <Button onClick={formSubmitHandler} type="primary">{formMode === 'UPDATE' ? 'Edit' : 'Create'}</Button>
+        <Button
+          onClick={formSubmitHandler}
+          type="primary"
+        >
+          {formMode === 'UPDATE' ? 'Edit' : 'Create'}
+        </Button>
       </div>
     </form>
 

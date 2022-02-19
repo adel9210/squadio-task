@@ -4,13 +4,21 @@ import { HTMLAttributes } from 'react';
 
 type TButtonType = 'primary' | 'secondary' | 'tertiary'
 
-interface ButtonProps extends HTMLAttributes<HTMLElement> {
-    type: TButtonType;
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+    type: TButtonType
 }
 
 const Button = (props: ButtonProps) => {
   const { type, children } = props;
 
-  return <button {...props} type="button" className={`button button--${type}`}>{children}</button>;
+  return (
+    <button
+      {...props}
+      type="button"
+      className={`button button--${type}`}
+    >
+      {children}
+    </button>
+  );
 };
 export default Button;
